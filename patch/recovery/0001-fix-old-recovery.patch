@@ -1,0 +1,26 @@
+From 5b6a39b6764f771f1a394e96fd0a46474f71a33e Mon Sep 17 00:00:00 2001
+From: syhost <syhost@163.com>
+Date: Sun, 1 Dec 2013 08:17:27 +0800
+Subject: [PATCH] fix old recovery
+
+Change-Id: I58fc309083172964456f2112480f48f40bee9bec
+---
+ updater/install.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/updater/install.c b/updater/install.c
+index c1f55dc..d8c43c0 100644
+--- a/updater/install.c
++++ b/updater/install.c
+@@ -691,7 +691,7 @@ static struct perm_parsed_args ParsePermArgs(int argc, char** args) {
+             int64_t capabilities;
+             if (sscanf(args[i+1], "%" SCNi64, &capabilities) == 1) {
+                 parsed.capabilities = capabilities;
+-                parsed.has_capabilities = true;
++                parsed.has_capabilities = false;
+             } else {
+                 printf("ParsePermArgs: invalid capabilities \"%s\"\n", args[i + 1]);
+                 bad++;
+-- 
+1.8.3.2
+

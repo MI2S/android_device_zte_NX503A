@@ -1,0 +1,33 @@
+From ee491f04f657aa1972212a4222cedcf310164790 Mon Sep 17 00:00:00 2001
+From: syhost <syhost@163.com>
+Date: Thu, 13 Mar 2014 00:48:04 +0800
+Subject: [PATCH] add fm_radio uid
+
+Change-Id: I9205e3709de512898270c6f9fad790af42cd5c7e
+---
+ include/private/android_filesystem_config.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/include/private/android_filesystem_config.h b/include/private/android_filesystem_config.h
+index 152a0a2..3539caf 100644
+--- a/include/private/android_filesystem_config.h
++++ b/include/private/android_filesystem_config.h
+@@ -77,6 +77,7 @@
+ #define AID_SDCARD_AV     1034  /* external storage audio/video access */
+ #define AID_SDCARD_ALL    1035  /* access all users external storage */
+ #define AID_AUDIT         1036  /* audit daemon */
++#define AID_FM_RADIO      1037  /* FM radio */
+ 
+ #define AID_THEMEMAN      1300  /* theme manager */
+ 
+@@ -208,6 +209,7 @@ static const struct android_id_info android_ids[] = {
+     { "nobody",        AID_NOBODY, },
+     { "theme_man", AID_THEMEMAN },
+     { "audit",      AID_AUDIT, },
++    { "fm_radio",   AID_FM_RADIO, },
+ };
+ 
+ #define android_id_count \
+-- 
+1.8.3.2
+
