@@ -11,7 +11,7 @@ tunnel.decode=false
 tunnel.audiovideo.decode=true
 lpa.decode=false
 lpa.use-stagefright=true
-persist.speaker.prot.enable=false
+#persist.speaker.prot.enable=false
 qcom.hw.aac.encoder=true
 
 # system props for the cne module
@@ -35,7 +35,7 @@ ro.qc.sdk.izat.service_mask=0x4
 # system props for the data modules
 #
 ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=false
+persist.data.netmgrd.qos.enable=true
 
 #system props for time-services
 persist.timed.enable=true
@@ -58,14 +58,14 @@ persist.fuse_sdcard=false
 
 ro.telephony.ril_class=ZTEQualcommUiccRIL
 ro.telephony.ril.v3=qcomdsds
-persist.radio.mode_pref_nv10=1
+#persist.radio.mode_pref_nv10=1
 ro.ril.enable.dtm = 0
 persist.telephony.oosisdc=false
 ril.data.bootingpopup=0
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 
-ro.telephony.default_network=0
+ro.telephony.default_network=7
 
 ro.ril.transmitpower=true
 ro.telephony.call_ring.multiple=0
@@ -118,7 +118,7 @@ persist.radio.apm_sim_not_pwdn=1
 #/* ZTEMT END */
 
 #/* ZTEMT START enable tintless*/
-persist.camera.tintless =enable
+#persist.camera.tintless =enable
 #/* ZTEMT END */
 
 #
@@ -126,10 +126,10 @@ persist.camera.tintless =enable
 #
 ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
 persist.sys.power.sound=1
-drm.service.enabled=true
-persist.factory.keypad_type=standard_w_camera_wo_search
-persist.factory.receiver_volume=10
-persist.factory.loopback_volume=12
+#drm.service.enabled=true
+#persist.factory.keypad_type=standard_w_camera_wo_search
+#persist.factory.receiver_volume=10
+#persist.factory.loopback_volume=12
 
 
 

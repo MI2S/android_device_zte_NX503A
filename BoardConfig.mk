@@ -40,8 +40,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 TARGET_BOARD_INFO_FILE := device/zte/NX503A/board-info.txt
 
-BOARD_KERNEL_CMDLINE 	:= console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 
-#androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE 	:= console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.selinux=permissive
 
 BOARD_KERNEL_BASE 		:= 0x00000000
 BOARD_KERNEL_PAGESIZE 	:= 2048
@@ -82,11 +81,11 @@ TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := device/zte/NX503A/init/init_NX503A.c
 
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+#BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 23
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
-#SKIP_SET_METADATA :=true
+SKIP_SET_METADATA :=true
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD

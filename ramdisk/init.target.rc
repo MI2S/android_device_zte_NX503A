@@ -34,9 +34,45 @@ on early-init
     mkdir /custom 0755 radio radio
 
 on init
-    # Set permissions for persist partition
+
+	# Set permissions for persist partition
     mkdir /persist 0771 system system
-#    export BOOTCLASSPATH ${BOOTCLASSPATH}:/system/framework/oem-services.jar:/system/framework/WfdCommon.jar
+    
+    chmod 0701 /mnt/media_rw
+    
+	#External storage directories
+	mkdir /storage/sdcard 0000 system system
+    mkdir /mnt/media_rw/sdcard 0700 media_rw media_rw
+	mkdir /storage/usbdisk 0000 system system
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    
+	mkdir /storage/sdcard 0700 root root
+    mkdir /storage/usbdisk 0700 root root
+ 
+ 	export EXTERNAL_STORAGE	/storage/sdcard
+    export SECONDARY_STORAGE /storage/usbdisk
+    
+	# for backwards compatibility
+    symlink /storage/sdcard /sdcard
+    symlink /storage/sdcard /sdcard0
+    symlink /storage/sdcard /storage/sdcard0
+    symlink /storage/sdcard /mnt/sdcard
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
+    
+    mkdir /tmp
+    mount tmpfs tmpfs /tmp nosuid mode=0755,uid=0,gid=0
+    
+    mkdir /dev/bus 0755 root root
+    mkdir /dev/bus/usb 0755 root root
+    
+    # Set the property to indicate type of virtual display to 0
+    # 0 indicates that virtual display is not a Wifi display and that the
+    # session is not exercised through RemoteDisplay in the android framework
+    setprop persist.sys.wfd.virtual 0
+
+# Set this property so surfaceflinger is not started by system_init
+    setprop system_init.startsurfaceflinger 0
 
 # import cne init file
 on post-fs
@@ -67,6 +103,7 @@ on fs
 
     write /sys/kernel/boot_adsp/boot 1
     setprop qcom.audio.init complete
+    #insmod /system/lib/modules/bcmdhd.ko
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
