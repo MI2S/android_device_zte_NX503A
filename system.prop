@@ -6,7 +6,7 @@ rild.libargs=-d /dev/smd0
 
 #add mayu
 persist.demo.hdmirotationlock=false
-ro.hdmi.enable=false
+ro.hdmi.enable=true
 tunnel.decode=false
 tunnel.audiovideo.decode=true
 lpa.decode=false
@@ -30,6 +30,9 @@ mmp.enable.3g2=true
 media.aac_51_output_enabled=true
 ro.qc.sdk.izat.premium_enabled=0
 ro.qc.sdk.izat.service_mask=0x4
+
+ro.cdma.home.factory=ChinaTelecom
+ro.cdma.home.operator.numeric=46003
 
 #
 # system props for the data modules
@@ -58,7 +61,7 @@ persist.fuse_sdcard=false
 
 ro.telephony.ril_class=ZTEQualcommUiccRIL
 ro.telephony.ril.v3=qcomdsds
-#persist.radio.mode_pref_nv10=1
+persist.radio.mode_pref_nv10=1
 ro.ril.enable.dtm = 0
 persist.telephony.oosisdc=false
 ril.data.bootingpopup=0
@@ -73,9 +76,10 @@ persist.radio.adb_log_on=1
 persist.radio.add_power_save=1
 persist.radio.snapshot_disabled=1
 persist.radio.apm_sim_not_pwdn=1
-#persist.radio.use_se_table_only=1 
-#persist.radio.fill_eons=1 
-#persist.radio.kickstart=on
+persist.radio.use_se_table_only=1 
+persist.radio.fill_eons=1 
+persist.radio.kickstart=on
+persist.radio.tdscdma_present=2
 
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=

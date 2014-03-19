@@ -47,7 +47,6 @@
 
 /dev/radio0               0640   system     system
 /dev/rfcomm0              0660   bluetooth  bluetooth
-/dev/btlock               0664   bluetooth  system
 /dev/smdcntl0             0640   radio      radio
 /dev/smdcntl1             0640   radio      radio
 /dev/smdcntl2             0640   radio      radio

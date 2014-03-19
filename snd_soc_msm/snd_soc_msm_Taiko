@@ -5275,7 +5275,7 @@ SectionDevice
 		'IIR1 INP1 Volume':1:0
 		'RX1 MIX2 INP1':0:IIR1
 		'CLASS_H_DSM MUX':0:DSM_HPHL_RX1
-		'RX1 Digital Volume':1:68
+		'RX1 Digital Volume':1:66
 		'DAC1 Switch':1:1
 	EndSequence
 
@@ -5471,8 +5471,8 @@ SectionDevice
 		'SLIM_0_RX Channels':0:One
 		'RX7 MIX1 INP1':0:RX1
 		'RX5 MIX1 INP1':0:RX5
-		'RX7 Digital Volume':1:72
-		'LINEOUT2 Volume':1:88
+		'RX7 Digital Volume':1:68
+		'LINEOUT2 Volume':1:85
 	EndSequence
 
 	DisableSequence
@@ -5509,8 +5509,8 @@ SectionDevice
 		'SLIM_0_RX Channels':0:One
 		'RX7 MIX1 INP1':0:RX1
 		'RX5 MIX1 INP1':0:RX5
-		'RX7 Digital Volume':1:72
-		'LINEOUT2 Volume':1:82
+		'RX7 Digital Volume':1:68
+		'LINEOUT2 Volume':1:78
 	EndSequence
 
 	DisableSequence
@@ -5541,7 +5541,7 @@ SectionDevice
 		'SLIM_0_RX Channels':0:One
 		'RX1 MIX1 INP1':0:RX1
 		'CLASS_H_DSM MUX':0:DSM_HPHL_RX1
-		'RX1 Digital Volume':1:68
+		'RX1 Digital Volume':1:73
 		'DAC1 Switch':1:1
 	EndSequence
 
@@ -5618,7 +5618,7 @@ SectionDevice
 		'SLIM_0_RX Channels':0:One
 		'RX1 MIX1 INP1':0:RX1
 		'CLASS_H_DSM MUX':0:DSM_HPHL_RX1
-		'RX1 Digital Volume':1:68
+		'RX1 Digital Volume':1:73
 		'EAR PA Gain':0:POS_6_DB
 		'DAC1 Switch':1:1
 	EndSequence
@@ -5648,7 +5648,7 @@ SectionDevice
 		'RX1 MIX1 INP1':0:RX1
 		'CLASS_H_DSM MUX':0:DSM_HPHL_RX1
 		'DAC1 Switch':1:1
-		'RX1 Digital Volume':1:65
+		'RX1 Digital Volume':1:68
                 'ANC Slot':1:6
                 'ANC1 MUX':0:DMIC3
 		'ANC1 FB MUX':0:EAR_HPH_L
@@ -5680,7 +5680,7 @@ SectionDevice
 		'SLIM RX1 MUX':0:AIF1_PB
 		'SLIM_0_RX Channels':0:One
 		'RX7 MIX1 INP1':0:RX1
-		'RX7 Digital Volume':1:80
+		'RX7 Digital Volume':1:72
 		'RX5 MIX1 INP1':0:RX1
 		'LINEOUT2 Volume':1:100
 	EndSequence
@@ -6212,7 +6212,7 @@ SectionDevice
 		'SLIM TX7 MUX':0:DEC6
 		'DEC6 MUX':0:ADC1
 		'ADC1 Volume':1:100
-		'DEC6 Volume':1:67
+		'DEC6 Volume':1:72
 		'IIR1 INP1 MUX':0:DEC6
 	EndSequence
 
