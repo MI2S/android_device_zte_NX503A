@@ -250,12 +250,12 @@ vendor/lib/libwfduibcsrc.so
 
 
 #WIFI
-etc/firmware/bcm4339/fw_bcmdhd_apsta.bin
-etc/firmware/bcm4339/fw_bcmdhd_p2p.bin
-etc/firmware/bcm4339/fw_mfgtest.bin
-etc/firmware/bcm4339/nvram.txt
-##etc/wifi/WCNSS_qcom_cfg.ini
-##etc/wifi/wpa_supplicant_wcn.conf
+etc/firmware/bcm4339/fw_bcmdhd_apsta.bin:vendor/firmware/fw_bcmdhd_apsta.bin
+etc/firmware/bcm4339/fw_bcmdhd_apsta.bin:vendor/firmware/fw_bcmdhd.bin
+etc/firmware/bcm4339/fw_bcmdhd_p2p.bin:vendor/firmware/fw_bcmdhd_p2p.bin
+etc/firmware/bcm4339/fw_mfgtest.bin:vendor/firmware/fw_mfgtest.bin
+etc/firmware/bcm4339/nvram.txt:etc/wifi/nvram.txt
+etc/wifi/wpa_supplicant_wcn.conf:etc/wifi/wpa_supplican.conf
 
 lib/libqsap_sdk.so
 
@@ -299,18 +299,6 @@ etc/firmware/venus.b01
 etc/firmware/venus.b02
 etc/firmware/venus.b03
 etc/firmware/venus.b04
-
-
-
-lib/libvss_dmi_qcci.so
-lib/libvss_common_iface.so
-lib/libvss_common_idl.so
-lib/libvss_nv_iface.so
-lib/libvss_nv_core.so
-lib/libvss_nv_idl.so
-lib/libvss_ims_qcci.so
-lib/libvss_common_core.so
-
 
 
 # cne

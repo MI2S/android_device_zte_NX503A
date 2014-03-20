@@ -53,7 +53,7 @@ PRODUCT_COPY_FILES += \
 # Recovery
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/recovery/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc \
-     $(LOCAL_PATH)//recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
+     $(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
 
 # USB driver
 PRODUCT_COPY_FILES += \
@@ -117,5 +117,10 @@ PRODUCT_COPY_FILES += \
     
 PRODUCT_PACKAGES += \
     Torch
+    
+# Recovery Options
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cwm.forbid_format=/persist,/firmware,/boot,/sbl1,/tz,/rpm,/sdi,/aboot,/splash,/custom \
+    ro.cwm.forbid_mount=/persist,/firmware
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
