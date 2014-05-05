@@ -36,7 +36,10 @@
 serialno=`getprop persist.usb.serialno`
 case "$serialno" in
     "")
-    serialnum=`getprop ro.serialno`
+    #serialnum=`getprop ro.serialno`
+    serialnum=`cat /sys/devices/msm_sdcc.1/mmc_host/mmc*/mmc*:0001/cid`
+    serialnum=${serialnum:${#serialnum}-8:${#serialnum}}
+    #setprop ro.serialno $serialnum
     case "$serialnum" in
         "");; #Do nothing, use default serial number
         *)

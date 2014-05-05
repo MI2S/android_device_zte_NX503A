@@ -20,6 +20,9 @@
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/zte/NX503A/device.mk)
+
 PRODUCT_DEVICE := NX503A
 PRODUCT_NAME := full_NX503A
 PRODUCT_BRAND := nubia
@@ -27,7 +30,4 @@ PRODUCT_MODEL := Z5S
 PRODUCT_MANUFACTURER := zte
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
-# Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/zte/NX503A/device.mk)
 
-$(call inherit-product, vendor/zte/NX503A/NX503A-vendor.mk)

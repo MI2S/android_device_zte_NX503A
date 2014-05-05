@@ -33,47 +33,6 @@ on early-init
 #ADD by wuzehui for the custom file-system
     mkdir /custom 0755 radio radio
 
-on init
-
-	# Set permissions for persist partition
-    mkdir /persist 0771 system system
-    
-    chmod 0701 /mnt/media_rw
-    
-	#External storage directories
-	#mkdir /storage/sdcard 0000 system system
-    mkdir /mnt/media_rw/sdcard 0700 media_rw media_rw
-	#mkdir /storage/usbdisk 0000 system system
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    
-	mkdir /storage/sdcard 0700 root root
-    mkdir /storage/usbdisk 0700 root root
- 
- 	export EXTERNAL_STORAGE	/storage/sdcard
-    export SECONDARY_STORAGE /storage/usbdisk
-    
-	# for backwards compatibility
-    symlink /storage/sdcard /sdcard
-    symlink /storage/sdcard /sdcard0
-    symlink /storage/sdcard /storage/sdcard0
-    symlink /storage/sdcard /mnt/sdcard
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
-    
-    mkdir /tmp
-    mount tmpfs tmpfs /tmp nosuid mode=0755,uid=0,gid=0
-    
-    mkdir /dev/bus 0755 root root
-    mkdir /dev/bus/usb 0755 root root
-    
-    # Set the property to indicate type of virtual display to 0
-    # 0 indicates that virtual display is not a Wifi display and that the
-    # session is not exercised through RemoteDisplay in the android framework
-    setprop persist.sys.wfd.virtual 0
-
-# Set this property so surfaceflinger is not started by system_init
-    setprop system_init.startsurfaceflinger 0
-
 # import cne init file
 on post-fs
     export LD_PRELOAD /vendor/lib/libNimsWrap.so
@@ -81,17 +40,26 @@ on post-fs
 on fs
     mount_all fstab.qcom
 	setprop ro.crypto.fuse_sdcard true
+	
+#	wait /dev/block/platform/msm_sdcc.1/by-name/persist
+#    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/persist /persist nosuid nodev barrier=1
+
+#    wait /dev/block/platform/msm_sdcc.1/by-name/modem
+#    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+
+#ADD by wuzehui for the custom file-system
+    wait /dev/block/platform/msm_sdcc.1/by-name/customfs
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/customfs /custom nosuid nodev barrier=1
      
     chown system radio /dev/block/platform/msm_sdcc.1/by-name
     chmod 0775 /dev/block/platform/msm_sdcc.1/by-name
     mount ext4 /dev/block/mmcblk0p14 /system remount rw barrier=1
     exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
-    exec /system/bin/sh /system/etc/init.qcom.thermald_conf.sh
     mount ext4 /dev/block/mmcblk0p14 /system remount ro barrier=1
 
     write /sys/kernel/boot_adsp/boot 1
-    setprop qcom.audio.init complete
-    #rmmod bcmdhd
+	setprop qcom.audio.init complete
+    #insmod /system/lib/modules/bcmdhd.ko
     
 
 on post-fs-data
@@ -125,7 +93,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 service gsiff_daemon /system/bin/gsiff_daemon
     class late_start
     user system
-    group gps net_raw
+    group gps qcom_oncrpc net_raw
 
 service qrngd /system/bin/qrngd -f
    class main
@@ -143,11 +111,12 @@ on property:sys.boot_completed=1
     start qrngp
 
 service qseecomd /system/bin/qseecomd
-   class core
+   class late_start
    user root
    group system
 
 service mpdecision /system/bin/mpdecision --avg_comp
+   class late_start
    user root
    group system
    disabled
@@ -158,17 +127,9 @@ service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
    disabled
 
 service thermal-engine /system/bin/thermal-engine
-   class main
+   class late_start
    user root
    group radio system
-
-#service security-check1 /sbin/security_boot_check system
-#    class core
-#    oneshot
-
-#service security-check2 /sbin/security_boot_check recovery
-#    class core
-#    oneshot
 
 service time_daemon /system/bin/time_daemon
    class late_start
@@ -188,7 +149,6 @@ service imsqmidaemon /system/bin/imsqmidaemon
 
 on boot
     start imsqmidaemon
-    insmod /system/lib/modules/adsprpc.ko
 
 # imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
 service imsdatadaemon /system/bin/imsdatadaemon
@@ -196,12 +156,6 @@ service imsdatadaemon /system/bin/imsdatadaemon
     user root
     group radio net_raw log qcom_diag net_admin
     disabled
-
-service wcnss-service /system/bin/wcnss_service
-    class late_start
-    user system
-    group system wifi
-    oneshot
 
 on property:sys.ims.QMI_DAEMON_STATUS=1
     start imsdatadaemon

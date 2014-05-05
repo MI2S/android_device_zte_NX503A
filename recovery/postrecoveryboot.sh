@@ -1,2 +1,2 @@
 #!/sbin/sh
-echo 120 > /sys/class/leds/lcd-backlight/brightness
+echo 75  > /sys/class/leds/lcd-backlight/brightness

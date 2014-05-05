@@ -31,14 +31,11 @@ media.aac_51_output_enabled=true
 ro.qc.sdk.izat.premium_enabled=0
 ro.qc.sdk.izat.service_mask=0x4
 
-ro.cdma.home.factory=ChinaTelecom
-ro.cdma.home.operator.numeric=46003
-
 #
 # system props for the data modules
 #
 ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
+persist.data.netmgrd.qos.enable=false
 
 #system props for time-services
 persist.timed.enable=true
@@ -55,12 +52,14 @@ debug.sensors=1
 telephony.lteOnCdmaDevice=1
 #telephony.lteOnGsmDevice=1
 
+#persist.radio.no_wait_for_card=1
+#ro.cdma.subscribe_on_ruim_ready=true
+
 #Simulate sdcard on /data/media
 #
 persist.fuse_sdcard=false
 
-ro.telephony.ril_class=ZTEQualcommUiccRIL
-ro.telephony.ril.v3=qcomdsds
+
 persist.radio.mode_pref_nv10=1
 ro.ril.enable.dtm = 0
 persist.telephony.oosisdc=false
@@ -68,7 +67,7 @@ ril.data.bootingpopup=0
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 
-ro.telephony.default_network=7
+ro.telephony.default_network=21
 
 ro.ril.transmitpower=true
 ro.telephony.call_ring.multiple=0
@@ -92,6 +91,7 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
 persist.sys.strictmode.disable=true
+#debug.egl.recordable.rgba8888=1
 
 
 #
@@ -99,8 +99,8 @@ persist.sys.strictmode.disable=true
 #
 ro.qc.sdk.audio.ssr=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
-#ro.qc.sdk.audio.fluencetype=fluence
-ro.qc.sdk.audio.fluencetype=none
+ro.qc.sdk.audio.fluencetype=fluence
+#ro.qc.sdk.audio.fluencetype=none
 ro.qc.sdk.sensors.gestures=true
 ro.qc.sdk.camera.facialproc=false
 #added by huzhibo. For handset AANC.
@@ -114,16 +114,18 @@ persist.sys.wfd.virtual=0
 #Dolby DS1 DOLBY_UDC
 dmid=3067269873
 
+ro.ireader.channel=109188
+
 #/* ZTEMT START */
 #property to support SSR && AP RESET when kernel panic.(1,1) to disable, (3,0) to enable
-persist.sys.ssr.restart_level=3
-persist.sys.ap.restart_level=0
+#persist.sys.ssr.restart_level=3
+#persist.sys.ap.restart_level=0
 ril.ipv6.rmnet0.enable=0
 persist.radio.apm_sim_not_pwdn=1
 #/* ZTEMT END */
 
 #/* ZTEMT START enable tintless*/
-#persist.camera.tintless =enable
+persist.camera.tintless =false
 #/* ZTEMT END */
 
 #
@@ -131,10 +133,10 @@ persist.radio.apm_sim_not_pwdn=1
 #
 ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
 persist.sys.power.sound=1
-#drm.service.enabled=true
-#persist.factory.keypad_type=standard_w_camera_wo_search
-#persist.factory.receiver_volume=10
-#persist.factory.loopback_volume=12
+drm.service.enabled=true
+persist.factory.keypad_type=standard_w_camera_wo_search
+persist.factory.receiver_volume=10
+persist.factory.loopback_volume=12
 
 
 
@@ -145,12 +147,12 @@ persist.sys.region=CN
 persist.sys.country=CN
 
 
+ro.config.vc_call_vol_steps=4
+
+
 #persist.sys.gesture=on
 
 #persist.sys.image.enhance=i
-
-
-
 
 
 

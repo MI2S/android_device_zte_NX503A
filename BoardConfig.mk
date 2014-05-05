@@ -40,7 +40,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 TARGET_BOARD_INFO_FILE := device/zte/NX503A/board-info.txt
 
-BOARD_KERNEL_CMDLINE 	:= console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE 	:= console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 
 BOARD_KERNEL_BASE 		:= 0x00000000
 BOARD_KERNEL_PAGESIZE 	:= 2048
@@ -56,15 +56,14 @@ BOARD_FLASH_BLOCK_SIZE 				:= 131072
 #TARGET_PREBUILT_KERNEL := device/zte/NX503A/kernel
 
 TARGET_KERNEL_SOURCE := kernel/zte/NX503A
-TARGET_KERNEL_CONFIG := cm_NX503A_defconfig
-TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+TARGET_KERNEL_CONFIG :=cm_NX503A-per_defconfig
 
 TARGET_ZTEMT_DTS := true
 
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/zte/NX503A/mkbootimg.mk
 
-TARGET_KERNEL_CUSTOM_TOOLCHAIN:= linaro-4.8
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN:= linaro-4.8
 
 #RIL
 BOARD_RIL_CLASS := ../../../device/zte/NX503A/ril/
@@ -76,52 +75,30 @@ TARGET_NO_INITLOGO := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/NX503A/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/zte/NX503A/bluetooth/libbt_vndcfg.txt
 
-#BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
+# Vendor Init
+TARGET_UNIFIED_DEVICE := true
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_LIBINIT_DEFINES_FILE := device/zte/NX503A/init/init_NX503A.c
+
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+#BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 BOARD_VOLD_MAX_PARTITIONS := 23
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
-
-USE_SET_METADATA := false
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 # Revcovery
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_SUPPRESS_EMMC_WIPE := true
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_RECOVERY_ALWAYS_WIPES := true
+BOARD_HAS_NO_SELECT_BUTTON 			:= true
+BOARD_SUPPRESS_EMMC_WIPE			 	:= true
+BOARD_HAS_LARGE_FILESYSTEM 			:= true
+TARGET_USERIMAGES_USE_EXT4		 		:= true
+BOARD_RECOVERY_ALWAYS_WIPES			:= true
 BOARD_RECOVERY_HANDLES_MOUNT := true
-BOARD_USES_MMCUTILS := true
+BOARD_USES_MMCUTILS							:= true
 
-
-
-BOARD_RECOVERY_SWIPE 				:= true
-RECOVERY_FSTAB_VERSION 				:= 2
-TARGET_RECOVERY_FSTAB 				:= device/zte/NX503A/ramdisk/fstab.qcom
+BOARD_RECOVERY_SWIPE 							:= true
+TARGET_RECOVERY_FSTAB 						:= device/zte/NX503A/ramdisk/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT 		:= "RGBX_8888"
 BOARD_USE_CUSTOM_RECOVERY_FONT 		:= \"roboto_23x41.h\"
-
-
-#TWRP config
-DEVICE_RESOLUTION 					:= 1080x1920
-RECOVERY_GRAPHICS_USE_LINELENGTH 	:= true
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-TW_INCLUDE_JB_CRYPTO 				:= true
-TW_FLASH_FROM_STORAGE 				:= true
-BOARD_HAS_NO_REAL_SDCARD 			:= false
-RECOVERY_SDCARD_ON_DATA 			:= false
-
-TW_INTERNAL_STORAGE_PATH 			:= "/storage/sdcard"
-TW_INTERNAL_STORAGE_MOUNT_POINT 	:= "/sdcard"
-
-
-TW_BRIGHTNESS_PATH 					:= "/sys/class/leds/lcd-backlight/brightness"
-TW_MAX_BRIGHTNESS 					:= 100
-
-TW_NO_SCREEN_TIMEOUT 				:= true
-#TWRP end
-
-
 
